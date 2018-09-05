@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1520059724" />
+    <version major="3" minor="1" revision="6" build="2" />
+    <region id="Config">
+        <node id="root">
+            <attribute id="Version" value="285212673" type="4" />
+            <children>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="AlwaysShowSplitterInTrade" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="AmbientVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="70" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ArenaCharacterHighlightMode" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="AutoFillHotbarCategories" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="121" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="AutoRemoveHotbarSkills" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="CameraSpeedMultiplier" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="0" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="CanAutoSave" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="CheckRequirements" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="CombatCharacterHighlightMode" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerCharacterRunThreshold" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="0.8" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerCharacterWalkThreshold" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="0.5" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerLayout" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerSensitivity" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="50" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerStickDeadZone" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="8000" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerStickPressDeadZone" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="26213" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ControllerTriggerDeadZone" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="2000" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="CutsceneVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="Difficulty" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="2" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="DirectConnectAddress" type="22" />
+                    <attribute id="Type" value="1" type="5" />
+                    <attribute id="Value" value="" type="20" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="DisableEdgePanning" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="DoUnlearnCheck" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="DualDialogsEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="EnablePortmapping" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="EnableSteamP2P" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="EnableVoiceLogging" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="EscClosesAllUI" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="Fading" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ForcePort" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ForceSplitscreen" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="FxVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="70" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameCameraEnableCloseUpDialog" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameCameraEnableDynamicCombatCamera" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameCameraRotation" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="30" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameCameraRotationLocked" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameCameraShakeEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameMasterBind" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameVisibilityDirect" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameVisibilityLAN" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GameVisibilityOnline" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GodMode" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="Language" type="22" />
+                    <attribute id="Type" value="1" type="5" />
+                    <attribute id="Value" value="English" type="20" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="LoadAllEffectPools" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="LogSaveLoadErrors" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MasterVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MaxAmountDialogsInLog" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="25" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MouseLock" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MouseScrollSensitivity" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="100" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MouseSensitivity" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="50" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MusicFightVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MusicVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="70" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MuteSoundWhenNotFocused" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="NodeWaitTimeMultiplier" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="1.3" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="NrOfAutoSaves" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="5" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="NrOfQuickSaves" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="5" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="PeaceCharacterHighlightMode" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ResetTutorialsOnNewGame" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RotateMinimap" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RumbleVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ScriptLog" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ServerFrameCap" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="30" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ShowOriginIntroInCC" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ShowSubtitles" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ShowXboxUIHints" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ShroudEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="SoundPartyLosingThreshold" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="20" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="SoundPartyWinningThreshold" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="80" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="SoundQuality" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="TacticalCharacterHighlightMode" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="TutorialBoxMode" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="UIScaling" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="1" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="UIVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="70" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="UseEndTurnFallback" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="UseLevelCache" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="UseRadialContextMenu" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="VoiceVolume" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="VoiceVolumeDialog" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="VoiceVolumeNarrator" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="VoiceVolumeOverhead" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="100" type="6" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

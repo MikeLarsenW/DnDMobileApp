@@ -1,0 +1,15 @@
+name="A Galaxy Divided: The Galactic Empire"
+archive="C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\281990\\878598475/agditp.zip"
+tags={
+	"Total Conversion"
+	"Buildings"
+	"Gameplay"
+	"Graphics"
+	"Star Wars"
+	"Empire"
+	"A Galaxy Divided"
+	"Crush the Rebellion. Destroy their dream."
+}
+picture="galacticempire.png"
+remote_file_id="878598475"
+supported_version="1.9.1"

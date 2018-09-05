@@ -1,0 +1,391 @@
+Objavro.codecdeflateavro.schema¤£{
+    "type": "record",
+    "name": "GameEventRecord",
+    "fields": [
+        {
+            "name": "TimeStamp",
+            "type": "long"
+        },
+        {
+            "name": "GameTime",
+            "type": "int"
+        },
+        {
+            "name": "IsServer",
+            "type": "boolean"
+        },
+        {
+            "name": "NumPeers",
+            "type": "int"
+        },
+        {
+            "name": "MetaData",
+            "type": {
+                "type": "record",
+                "name": "GameEventMetaData",
+                "fields": [
+                    {
+                        "name": "playerUUID",
+                        "type": "string"
+                    },
+                    {
+                        "name": "versionUUID",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sessionUUID",
+                        "type": "string"
+                    },
+                    {
+                        "name": "gameUUID",
+                        "type": "string"
+                    },
+                    {
+                        "name": "difficulty",
+                        "type": "int"
+                    },
+                    {
+                        "name": "hasMods",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "module",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "EventType",
+            "type": "string"
+        },
+        {
+            "name": "EventData",
+            "type": "string"
+        },
+        {
+            "name": "EventDataExtra",
+            "type": "string"
+        },
+        {
+            "name": "CharName",
+            "type": "string"
+        },
+        {
+            "name": "CharLevel",
+            "type": "int"
+        },
+        {
+            "name": "LocallyControlled",
+            "type": "boolean"
+        },
+        {
+            "name": "Map",
+            "type": "string"
+        },
+        {
+            "name": "Position",
+            "type": {
+                "type": "record",
+                "name": "GameEventVector3",
+                "fields": [
+                    {
+                        "name": "x",
+                        "type": "float"
+                    },
+                    {
+                        "name": "y",
+                        "type": "float"
+                    },
+                    {
+                        "name": "z",
+                        "type": "float"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "PrimaryStats",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "PrimaryStatsRecord",
+                    "fields": [
+                        {
+                            "name": "StatsName",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Level",
+                            "type": "int"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "SecondaryStats",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "SecondaryStatsRecord",
+                    "fields": [
+                        {
+                            "name": "StatsName",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Value",
+                            "type": "float"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Resitances",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "ResitancesRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Value",
+                            "type": "int"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Abilities",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "AbilitiesRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Value",
+                            "type": "int"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Talents",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "TalentsRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Health",
+            "type": {
+                "type": "record",
+                "name": "HealthRecord",
+                "fields": [
+                    {
+                        "name": "Value",
+                        "type": "int"
+                    },
+                    {
+                        "name": "Max",
+                        "type": "int"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ArmourPhysical",
+            "type": {
+                "type": "record",
+                "name": "ArmourPhysicalRecord",
+                "fields": [
+                    {
+                        "name": "Value",
+                        "type": "int"
+                    },
+                    {
+                        "name": "Max",
+                        "type": "int"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ArmourMagical",
+            "type": {
+                "type": "record",
+                "name": "ArmourMagicalRecord",
+                "fields": [
+                    {
+                        "name": "Value",
+                        "type": "int"
+                    },
+                    {
+                        "name": "Max",
+                        "type": "int"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "SourcePoints",
+            "type": "int"
+        },
+        {
+            "name": "Skills",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "SkillsRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ActivatedSkills",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "ActivatedSkillsRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Equipment",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "EquipmentRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "StatsName",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Rarity",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Level",
+                            "type": "int"
+                        },
+                        {
+                            "name": "Amount",
+                            "type": "int"
+                        },
+                        {
+                            "name": "Slot",
+                            "type": "string"
+                        },
+                        {
+                            "name": "WeaponType",
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Inventory",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "InventoryRecord",
+                    "fields": [
+                        {
+                            "name": "Name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "StatsName",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Rarity",
+                            "type": "string"
+                        },
+                        {
+                            "name": "Level",
+                            "type": "int"
+                        },
+                        {
+                            "name": "Amount",
+                            "type": "int"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Tags",
+            "type": {
+                "type": "array",
+                "items": "string"
+            }
+        },
+        {
+            "name": "PartyGold",
+            "type": "int"
+        }
+    ]
+}
+ +S@»†'`Á‘xYÈ=0\8@–íÚolãfp_Ú…*—ª…¨ªªp:½é\Ù©ÓÄ÷âZÇvšŒü›’M˜Ç~$¦Ÿè±İ£$@ì{ÅÄ;˜NâÓ$„´iÓM:¡I ½ 	!4±1:U /Ú+§í©¤w0e‰Û¾pœXöïñÇßçç¸¿ùó‹?}ë<ÃÄ*E+ŸÏƒbsÇ
+Ø`‹Ç³œiš ù<ß5ÓëÜ:_à×‹¼XA!æÙ¼°i±B>¿ÁŠ"Y.'¹bNäa^¬@Qì!Yh‰o²EX¡[s°ÀX1†Sì}ÛµıƒkÙ&±{¶œ¬n»Ù\º†Ô‘çÙØeâçÍÉ.çòî= Ï—éB“ƒËšl”Û:ˆ…dì8€¬<!K†ÜCƒËMeİ©°èJàúŞ_®0•å®ÉX7J=DÊ˜HÎÀ&`
+¿8Âİ1ä€xj¶Û›…ªWGUƒ>²P¦ëf¡æM2I{Òh÷Qu0DÄr}äÍBõ—ÂÒ[Äö°ktlÒ•³PöEzÒ;£„}ßA°c{ıY¨z…V]ª†ÒÛ$ğg¢äåãK[Á–É,Tœ	3|Ãx¹°àŸÿ$1©%/…½uí#çÕ\öÃtØGUızr«J{> ¾BçÜ+ÒºšÕšQu]ÚtÙÈ´Ìí…§gVt£å€º\BÀóÓçN†áOw®(Ì“»~ûÖ¼œŒëm-¯6Ú©x¹ÚĞâr³q)^Wë™x§Ú.2É”LlŸºp-Ä0ÏJ+áËzàøöĞ±¡#¶½(YV@€uÀ0¯–
+†=úÉLi±÷Ñ ¹>Ã,H©*­Å¾½Oßû«ÄÌÇ%›¤’-N'kL&İ„Ø˜Ô0Aó)¸=4Z-i¸ p1•j ‹à=’ƒØ’Ø¥ÍVl©…ƒ&Ãşü¢îÒş“®Œ/¶û6=óä –
+·€pLè2¯ocµÀÚ‹g” 8päèVËLbEÈÎqHò}`í-Ö°‹:Øé^<ı¹’ƒ­½L8õwİ<X9~q¼{æ½óï¿9wsîı±J%ÍRM]*Iı«J¤ô©-i¹"Õ[Õf#¼EJ”TIo_®î4ššjì6URY«ÖÕeM•›šb´jÒSª¶$7ë-©A·Z¨K55¡t$­Ì¼´~d÷ÍÉµ›=b+¹ŞDvw«Ê™€+W6A°Á³'Z¬‰
+å gmˆÜà­\„|&‘¿35ÈÍœÉw7º#ÎÜ¤ûàhthuaÑÜ°
+f„|&‘ßä›‚¹i…U+@Ò½q›¬XÍ‚é5 FÈgùáÔ 7…._´x…œ@Û•WdEEğVÍ¼Yà
+òùd!Oy>F·“İ1tÿ6¹tÓ§¾ÓZ§•²Ñ c*÷‘µ7Ä¶ë§U—ª¦íĞ-Ç
+şºş¬^ÿİÏş^ŠG‚'Vğªêì#Ï¨ ‚)\¥™Â‡çÖæõw¶Ş=Âé{„¯‡„¯†„³!á5&ñ Â··N~ı4Ü¯nß÷‰‰›}vî~´§ĞÎ¯´è!j¨ë Ë·±;Ÿ½—)z}ˆ,:ıĞi&¶ªâ÷O­øÏÂSé6ru…<Û‹İ“½0N6½fË€àÀWˆî	N~L-ªN×7Ì†2½l<¤ÒòÜ^Zı"²‚ğxé˜>zøè¹;so<òÆ##À™dı)½]•/èr¥Y“´c¿É#¥ïÇìª^‘Zª^©–ÛFYj¨ËuIÿ´ªo{aGm¨ZUÉ«µ2ÃüaÄú»/¤Y§F¬ŞØ\¾ú­5…ùÎK[_Æ?ü¿åröì\N,”m‚â‰‘Ìx¢CË"ñ0«—İ¯GYı?Èê_\›6Ôã£Ú¬ÓnÃşÆÖ—>ù£Òƒ¢úªÿ%ªOTSìg…öXÕñ(Í£4ÿ ğ³'7Š^8aŠD™eútdú¿Ñ’=Jö÷‘ìÏO0ÿSÿKR9ãË¿°¡Ù	 ã¿Üşí§”¯<—Ş:g~?Šõ™ˆõIvı±9Ñâ>“5óö'"Öë ëñÊÎ¥+
+s÷s[ÖoEJÔ©ÑÿÁäÒ?õ”ò¿lTê¿§‰N>¾uókQ¢O{¢ÿqÄúİÉe½zdt×CPß³çêãÁ`hÈ{’Ğ£gİ`Ïxöş…W/+Lr¸õÂÚs‘æ©Öü«kwGšŸyez5¿ön–v%ßÛ®~ó™ã9ü•§ÿ²=‡ÿääşcrå>Lg½ÜéÛ>:i5Æ·Ößî®*·ùüvşóFÔZG­õ?+S@»†'`Á‘xYÈ=0\80¬íÚMlÛT ğGZBHÃTUQB)š¦‚š*išLâÄÉš)_ØiÃ6$ób¿$8vôlÂ©B9ì‚4‰Ú.8 .T¡Á‰v !N“†€i¦	M<'¡Ê¾Õi[“ö%9ø;~ïıò÷³ó.üùÙÙß&.é•˜Fá"
+..EBÁH.cr(U«Õe¨„£áZÕ·´Z/‡báø
+Z–ª*Ñ`4òœŒD£KÁxÆƒ¡ÅH,[Œ‡•h|E‰Çk1%¤9®#(\ÆâÊr0R‹Å•å0CÙB<^Ç6;‡g‹×±ÕYk³‹¾Õ¶Mô’…sAHI|F*A*XK5ÜlëX3•6QÖ±a"2-J%v‘’¦ï¡t·<ÄÚ—¯Îğ[?|¸úD!éqŠeÁëÌÊ^g&[œ©bá 3ŸÎû•l9<ŞÁfª5p’›¶gó–jâ¶Š $&9Y¶”; l&İ¼®Ôé–³ÉÉ¼¾ZH3Ÿyåï„7KË„¡‰×éº‹p»2˜ §;‰Ùpº+´dÄéä0	xJ:6tmø}HÖIN'hÜ+@­ºÓ)A¯[ÈôzH&z‹]Ç1%Z­–®a­î˜*éj§¥“vc|RÔlÒ…ÎÉr£uD:¯½oÚ•D§T1¸ípå,¹éôóT+©´nëà-Ò&Ø@œiB¹9™Ó5TÑÕÚÓƒÛ%U]núù×!©I¢i¥3İŸé=¸2qeâÌØ™±éØ/¯»PLæÒSIN Ÿ,Wğpk\™ü©._ÊR¦|ÔLsbùPöH¡(¤¥ÕŸæx)%dóé€N^*å¸cia*UÌ—¸İË•çri7_á„øéğ…®ëS›Cëz¦gtÕ@ŠØÄª:Ôjµ¥”ªÃ&§)<¬ÓV—‚apKÍ%ãI~ãüéDy=tß4ûo¯yÜ–ëíËcrï‰Ü‹]¹—¶FFî\’hÜDÒ¤3·u«ıà7¦ßO¼¼¼vG·®»tö¼Ís\™ šæ¥.ÍÏ¿š‡Ä†n™§D·Áº­Lòóã|"ÿ^âŸw3™w-ó¯İ“¹9:2çËÔ‘)‰*BmZmiç^ÆyntpöcSlcÚ(9Tg2ï¿ÌM×®Éüexeú»i)KDÉ&V‘mS« *S¹gU^^•×çåÁşÅü¬‰r‡ûöÀ¼÷í ¸¸}vß¾‹hO}=2hŸ½1M™Ûıçöß®ÛwÎŒÛ?(=ñc€ß::á˜}óÁÀcpÜGîNwá^àVÔÌíıyÀÿè®¹ıdtÜÎ÷P\-¤"]£5wÿÁ½Ú…ûÖ·#w‡L1¶{˜íÛÃËÖKû²Fo€Ë!{€KEÊ`£mRÁ®5v×Àn¸ØƒlƒÍ@ùÀÿ^«Oñ¿~”xşÓFÏ«oÛë¶×yÛë¬íu¸¯ñúÅ^·^ğúİ ÒkÇ©lqÀÑzrø…º„O—è)
+¨¦Ú]t]÷t×)“*\l#C¦c¦;tk`ÁÍ9{}eÚY¢ˆÇ6c× ]ZÈ$´oÅ[
+Ú&ê9®·ªÍ¬Xô˜RV[§…¢ñ¥ß@²eŸ™]úoÆÀ÷wUú=ùcb9›: ¦VŠ9Nè£ôôèÖÒÙ\šïCte¸Â-ŞÌl×fÿPî•Õ<W `”„ú{B“¨^‡„e)ËÒ‘ÊB”…èğŒ¼¡ú’Y©Ü@İû(ƒ¶@ÍPÖ$‹T©£è–,Ø¡¹ö_ï”uTYªV¥,J‡èšO’«0Cú
+º™Ñ-MI«5«,VG.‹X±ÃÓ¸*ë­î³Xı+S@»†'`Á‘xYÈ=0\80Èíš±oêFÇ¯NŠF(²¢4ªªÏhàImcl¨°¡6y(í`ö§:lR¶ıŞŞµK—JíÔ©zCÕvêØ­êŞªRçO=^DÚd7é>¸3÷³?şÜ×/ÿüæ‡ß}öc
+ŠS.—aIÅ£R^*•à‘Tqò)ßï÷¡[(ıìÑaş°p\8¬ªtì ÔwËR¹ô®#•Êå#©Z…U)_,Uò•bµà–«·ZTÜ¼+¹NÕ•J¨Ğ—*U÷X**Õ¢{\€è ¯âöq0ºß¦xˆ}èí[Øß/ŠŠG¦è£Mƒ½z÷CÛ‚#„=X‡;–İñàQ»}”[¦bëûÂÙ[êÕ¯_¼÷õ¨–NX]3›h]1Qoï'”¶ñ$¡kú~¢×ì€”¨P(#è;€oåİ¨©‡^€'F€ddÇ	)tæ üTËèd†ÆÈ ¸:›lÊxÆÆ¾î<%şóÍö ¥˜Ğ¡()šĞ¢Åöæn‡MÑD9&şfzñ›Ù‘1µ&ÈÁĞÃÓ@ØÓ F+ˆr(³‰Î…m+‰ı¡˜í"]`MñTÈtGÍ'Å‚.¢Ó¬È:¤$ÔĞE™ñQxƒôÇdÜÇh¯²}ÚMÆŠb…dµO‘F3‹ªÿığıøùu=riıÜê6•-Ki´[²™–ŸÉ]övf¨š¬î<Óš-Mµ¯[Éºlh;¦¦´MÕî´äsÍÜVÚzG6šmãæ©Ñ6µeW[1›º–Ôå–¶ÜUªq¦Ë /ãNgölâ2xæ}jÏÖ;Yt‹ş2•İDkNƒìk¯=üãMõDÿü¤ç}rÍ¨xÃ¨1ú8b41Zé[Œ>ÿ/£àd…Ñïj)•¸CÖ3·Jë|‹Ö¿d°™`Ä‰Kd@n•ØÍb…m“CmŠwC(lwˆ7:mf,AÆã0q£ FcÇ¬~D…U0“­Ğ¹HäÔz=Œ<—Ú©]+¤Š§Hè\Ü ûöj¿šGœ‹œz	éÀ¶‚ºóİecùóà*õ÷#ğÅÆWì¹ WLíZKÛ®É&{5ec‰oNiÈz‡Qi3¿¤jšluïâó>–Ü¦ÔlÖÁ/O×ŸX.U.ÕØ,ù·\¦\¦ëA*—(—h|Öù=Fßé¹}JÜéÊìÛ< r§®)¸\±\±±Yıÿ*ª\«ë+W)Wi|ıÃèNªnw Ù¯Œs1!Øxjåz}0 såråÆ&Ü,O±\³ë-W+Wk|ÂÀcF_¯a[²û-+€Aˆxå†}ìrÑrÑÆ&ÜÁ*¯\®kÅ+*j|Vÿ'×ÿh‰.lv(Fã¨ß”§W.Ø‡Â/.nlÁ=¼òË%»vÌr±r±Æ'	¯)µFĞ%—mvTŠÁ%!.³Ü³a®]®İØdƒû‘å‘ö¦Ú +S@»†'`Á‘xYÈ=0\8	MO½Ó@^ÂÉ:ù"EÖ)œRœĞ	]ãÈNì‹}Õ­Åv°¢°6ëM²Šã6v;
+€–š‚ „7 å5ÂAW03Å73ß7?~~úòıäíW4FÖuõ‰ÜhŠ¬ih XQee>ŸQªêêb~:è)=u¨öÕ‘!&dê²®]aYÓõlšÈ”•¾f(FßTSİ¥¦¹0R%•Sl¦²FÔ¹l˜éPÖ†ÙO‡*Rn Å¡{šÓ¢º>9]Òeç1ÍÏû’±yV’]qÙ‰3K"ŠW>áx…òtãd’¡ŠğÄ"hWœŞ{P“|DóŞ‡Îÿşf–½²šB<$Á¦’pë‘`‡Á…à»~G˜yS4%›ÓÂ®bÀ;Ø=¤~™t›QÂ 7-ˆqÉ® øl‰K—5³cµ|¶'R.¡äÕPTĞ}İûÁ‘ )—šFw,¿Óâœ2>fœIÊ—än´#¶,ÉJR@0g›ú’ªÑËÍ†å4_6Ú–UÆ·«£Vœ´®‹Bkº¢dOxÕÚMı?á5&(%|·¢ÛÆñ¸Äk¡ã”(›Q’¥µêˆİ¸ä[NwÂëÖ˜ådÆ²Å£ÿyVÆğºã¼F|‘ÄEÉÓª{—Ü­oÄß'àÃıµƒƒIbZc·mÁ¨MøNaÔ±GĞŸxaÜNŸŠ–ãécïIFnò<p\è$väùîYäÚaä$“1|éFm;ô'0¨UÇ>»¢3ƒÑ-øvı+S@»†'`Á‘xYÈ=0\8  +S@»†'`Á‘xYÈ=0\8

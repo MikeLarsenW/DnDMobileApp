@@ -1,0 +1,102 @@
+#define PIXEL_SHADER
+#define SHADERQUALITY_MEDIUM
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+sampler NebulaTexture : register(s0);
+sampler ColorTexture : register(s1);
+sampler TerraIncognitaTexture : register(s2);
+sampler Border : register(s3);
+struct VS_INPUT
+{
+	float2 vPosition : POSITION;
+	float2 vUV : TEXCOORD0;
+	float3 vPos : TEXCOORD1;
+	float2 vSize_vRot : TEXCOORD2;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV : TEXCOORD0;
+	float2 vPos : TEXCOORD1;
+	float4 vScreenCoord : TEXCOORD2;
+};
+static const float GALAXY_SIZE = 2000.f;
+static const float TI_BLEND_START = 0.65f;
+static const float TI_BLEND_STOP = 0.75f;
+static const float TI_GRAY_BRIGHTNESS = 0.15f;
+
+float Desaturate( float3 vColor )
+{
+	return dot( vColor, float3( 0.212671f, 0.715160f, 0.072169f ) );
+}
+
+float CalcTerraIncognitaValue( float2 vWorldPos2D, in sampler2D TITexture )
+{
+	float2 vTIUV = ( vWorldPos2D + GALAXY_SIZE * 0.5f ) / GALAXY_SIZE;
+	float vTI = tex2D( TerraIncognitaTexture, vTIUV ).a;
+	
+	return smoothstep( TI_BLEND_START, TI_BLEND_STOP, vTI );
+}
+
+float4 ApplyTerraIncognitaValue( float4 vColor, float vBrightness, float vTI)
+{
+	float Grey = Desaturate( vColor.rgb ) * TI_GRAY_BRIGHTNESS * vBrightness; 
+	//Grey = TI_DARK + ( ( TI_BRIGHT - TI_DARK ) * ( Grey ) ) / 1.f;
+	
+	vColor.rgb = lerp( vec3( Grey ), vColor.rgb, vTI );
+	
+	return vColor;
+}
+
+float4 ApplyTerraIncognita( float4 vColor, float2 vWorldPos2D, float vBrightness, in sampler2D TITexture )
+{
+	float vTI = CalcTerraIncognitaValue( vWorldPos2D, TITexture );
+	return ApplyTerraIncognitaValue( vColor, vBrightness, vTI);
+}
+
+		float4 main( VS_OUTPUT v ) : PDX_COLOR
+		{
+			float4 vDiffuse = tex2D( NebulaTexture, v.vUV );
+			vDiffuse.a = saturate( vDiffuse.a * 6.0f );
+			float4 vColor = tex2D( ColorTexture, v.vUV  );
+
+			float vTI = CalcTerraIncognitaValue( v.vPos.xy, TerraIncognitaTexture );
+			
+			float4 vBorderColor = tex2Dproj( Border, v.vScreenCoord );
+			
+			vBorderColor.a = saturate( vBorderColor.a * 0.5f );
+			vColor.rgb = lerp( vColor.rgb, vBorderColor.rgb * 2.0f, vBorderColor.a );
+
+			float4 vTIColor = ApplyTerraIncognitaValue( vColor, TI_GRAY_BRIGHTNESS, vTI );
+
+			float vBorderTI = 0.8f; // Saturate border under TI
+			vTI = saturate( vTI + ( vBorderColor.a * vBorderTI ) * saturate( ( 1.0f - vTI ) * 1000 ) );
+
+			vColor = vDiffuse * lerp( vColor, vTIColor + vBorderColor.a * 0.3f, 1.0f - vTI );
+
+			return vColor;
+		}
+		
+	

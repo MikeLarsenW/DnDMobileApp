@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Lab02Mwessels</string>
+    <string name="toppings_title">Toppings</string>
+    <string name="pepperoni">Pepperoni</string>
+    <string name="anchovies">Anchovies</string>
+    <string name="sausage">Sausage</string>
+
+    <string name="crust_title">Crust</string>
+    <string name="thick">Thick</string>
+    <string name="crispy">Crispy</string>
+    <string name="soggy">Soggy</string>
+
+    <string name="to_go_title">To go or no?</string>
+    <string name="at_restaurant">At Restaurant</string>
+    <string name="deliver">Deliver</string>
+    <string name="pickup">Pickup</string>
+
+    <string name="pizza_size_bar_title">Pizza Radius in Inches</string>
+
+    <string name="radius_five">The Pizza radius is 5 Inches</string>
+    <string name="radius_six">The Pizza radius is 6 Inches</string>
+    <string name="radius_seven">The Pizza radius is 7 Inches</string>
+    <string name="radius_eight">The Pizza radius is 8 Inches</string>
+    <string name="radius_nine">The Pizza radius is 9 Inches</string>
+    <string name="radius_ten">The Pizza radius is 10 Inches</string>
+</resources>

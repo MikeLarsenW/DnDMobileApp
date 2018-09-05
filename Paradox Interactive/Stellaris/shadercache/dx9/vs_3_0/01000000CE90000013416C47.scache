@@ -1,0 +1,91 @@
+#define VERTEX_SHADER
+#define SHADERQUALITY_MEDIUM
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+float4x4 ViewProjectionMatrix : register(c0);
+float4 DustCloudUV : register(c4);
+float4 BATCHED_VARIABLES_1 : register(c5);
+#define vResolution BATCHED_VARIABLES_1.xy
+#define TimeRot BATCHED_VARIABLES_1.z
+
+struct VS_INPUT
+{
+	float2 vPosition : POSITION;
+	float2 vUV : TEXCOORD0;
+	float3 vPos : TEXCOORD1;
+	float2 vSize_vRot : TEXCOORD2;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV : TEXCOORD0;
+	float2 vUVColor : TEXCOORD1;
+	float4 vPos : TEXCOORD2;
+	float4 vScreenCoord : TEXCOORD3;
+};
+		VS_OUTPUT main(const VS_INPUT v )
+		{
+			VS_OUTPUT Out;
+			float4 vPos = float4( v.vPosition.x, 0.f, v.vPosition.y, 1.0f );	
+			vPos.xz *= v.vSize_vRot.x;
+			
+			float vTimeRot = TimeRot * ( -saturate( -v.vSize_vRot.y * 1000.0f ) + saturate( v.vSize_vRot.y * 1000.0f ) );
+			float randSin = sin( v.vSize_vRot.y + vTimeRot );
+			float randCos = cos( v.vSize_vRot.y + vTimeRot );
+			
+			vPos.xz = float2( 
+				vPos.x * randCos - vPos.z * randSin, 
+				vPos.x * randSin + vPos.z * randCos );		
+			
+			//Semi-billboard
+			//float3 Forward = cross( Right, Up );
+			//vPos.y = dot( vPos, Forward ) * 0.3;
+			
+			//Real billboard
+			//vPos.xyz = Right * vPos.x + Up * vPos.z;
+			
+			//Tilt
+			vPos.y = ( v.vPosition.x + v.vPosition.y ) * v.vSize_vRot.x * 0.1f;
+			
+			vPos.xyz += v.vPos;
+			
+			float4 vPosition = mul( ViewProjectionMatrix, vPos );
+			Out.vPos 		= vPos;
+			Out.vPosition  	= vPosition;
+			Out.vUV			= v.vUV;
+			Out.vUVColor 	= ( vPos.xz + DustCloudUV.xy ) / DustCloudUV.zw;
+			
+			Out.vScreenCoord.x = ( Out.vPosition.x * 0.5 + Out.vPosition.w * 0.5 );
+			Out.vScreenCoord.y = ( Out.vPosition.w * 0.5 - Out.vPosition.y * 0.5 );
+		#ifdef PDX_OPENGL
+			Out.vScreenCoord.y = -Out.vScreenCoord.y;
+		#endif	
+			Out.vScreenCoord.z = Out.vPosition.w;
+			Out.vScreenCoord.w = Out.vPosition.w;	
+	
+			return Out;
+		}
+		
+	

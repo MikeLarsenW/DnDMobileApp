@@ -1,0 +1,101 @@
+#define PIXEL_SHADER
+#define SHADERQUALITY_HIGH
+#define MASKING
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+sampler FrameTexture : register(s0);
+sampler MaskingTexture : register(s1);
+sampler SymbolTexture : register(s2);
+sampler BackgroundTexture : register(s3);
+float4x4 WorldViewProjectionMatrix : register(c0);
+float4 ModulateColor : register(c4);
+float4 BATCHED_VARIABLES_1 : register(c5);
+#define Offset BATCHED_VARIABLES_1.xy
+#define NextOffset BATCHED_VARIABLES_1.zw
+float4 BATCHED_VARIABLES_2 : register(c6);
+#define Time BATCHED_VARIABLES_2.x
+#define AnimationTime BATCHED_VARIABLES_2.y
+#define SymbolPos BATCHED_VARIABLES_2.zw
+float4 BackgroundColor[4] : register(c7);
+float4 BATCHED_VARIABLES_3 : register(c11);
+#define SymbolSize BATCHED_VARIABLES_3.xy
+#define BGPos BATCHED_VARIABLES_3.zw
+float2 BGSize : register(c12);
+
+struct VS_INPUT
+{
+	float3 vPosition : POSITION;
+	float2 vTexCoord : TEXCOORD0;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vTexCoord : TEXCOORD0;
+	float2 vFullTexCoord : TEXCOORD1;
+};
+		float4 GetFlagColor( float2 vUV )
+		{
+			float2 vBGUV = ( vUV - BGPos ) / BGSize;
+			float4 vBG = tex2D( BackgroundTexture, vBGUV );
+			
+			float4 vColor = float4( 0, 0, 0, 1 );
+			vColor += BackgroundColor[0] * vBG.r;
+			vColor += BackgroundColor[1] * vBG.g;
+			vColor += BackgroundColor[2] * vBG.b;
+			vColor = saturate( vColor );
+			//vColor += BackgroundColor[3] * vBG.a;
+			float2 vSymbolUV = ( vUV - SymbolPos ) / SymbolSize;
+			if( vSymbolUV.x >= 0.f && vSymbolUV.x <= 1.f && vSymbolUV.y >= 0.f && vSymbolUV.y <= 1.f )
+			{
+				float4 vSymbol = tex2D( SymbolTexture, vSymbolUV );
+				vColor.rgb = lerp( vColor.rgb, vSymbol.rgb, vSymbol.a );
+			}
+			vColor.a = saturate( vColor.a );
+			vColor.a *= tex2D( MaskingTexture, vUV ).a;
+			return vColor;
+		}
+		
+		float4 AddFrame( float4 vColor, float2 vUV )
+		{
+			float4 FrameColor = tex2D( FrameTexture, vUV ) * ModulateColor;
+			
+			vColor.rgb = lerp( vColor.rgb * vColor.a, FrameColor.rgb, FrameColor.a );
+			vColor.a = max( vColor.a, FrameColor.a );
+			return vColor;
+		}
+			float4 main( VS_OUTPUT v ) : PDX_COLOR
+		{
+		    float4 vColor = GetFlagColor( v.vFullTexCoord );
+			vColor = AddFrame( vColor, v.vTexCoord );
+			
+			float vTime = 0.9 - saturate( (Time - AnimationTime) * 4 );
+			vTime *= vTime;
+			vTime = 0.9*0.9 - vTime;
+		    float4 MixColor = float4( 0.15, 0.15, 0.15, 0 ) * vTime;
+		    vColor.rgb += ( 0.5 + vColor.rgb ) * MixColor.rgb;
+			
+			return vColor;
+		}
+	

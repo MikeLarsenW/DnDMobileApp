@@ -1,0 +1,74 @@
+//============================================================================
+// Name        : radix.cpp
+// Author      : Michael Wessels
+// Description : RadixSort
+//============================================================================
+
+
+#include <iostream>
+
+using namespace std;
+
+void print(int *in, int n)
+{
+ for (int i = 0; i < n; i++)
+      cout << in[i] << "\t";
+}
+
+void radix(int *in, int n)
+{
+  int i;
+
+  // finds the max
+
+  int max = in[0];
+  for (i = 1; i < n; i++)
+  {
+    if (in[i] > max)
+      max = in[i];
+  }
+
+  // runs loop for each digits places
+  int x = 1;
+  int *tm = new int[n];
+  while (max / x > 0)
+  {
+    int decimal[10] = {  0 };
+
+    for (i = 0; i < n; i++)
+      decimal[in[i] / x % 10]++;
+
+    //prepares for reordering
+    for (i = 1; i < 10; i++)
+      decimal[i] += decimal[i - 1];
+
+
+    for (i = n - 1; i >= 0; i--)
+      tm[--decimal[in[i] / x % 10]] = in[i];
+    for (i = 0; i < n; i++)
+      in[i] = tm[i];
+
+    // next digits place
+    x *= 10;
+
+
+  }
+}
+
+
+
+int main()
+{
+  int test[10] = {112, 13, 21, 141, 312, 1, 293, 420, 708, 999};
+
+  cout << "In: ";
+  print(test, 10);
+
+  radix(test,10);
+
+  cout << "\nOut: ";
+  print(test, 10);
+
+  cout << "\n";
+  return 0;
+}

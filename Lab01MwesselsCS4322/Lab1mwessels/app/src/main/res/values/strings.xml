@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab1mwessels</string>
+    <string name="major_label">Major:</string>
+    <string name="my_major">Computer Science</string>
+    <string name="favorite_text_edit">Data Structures</string>
+    <string name="favorite_label">Favorite Course:</string>
+    <string name="button_name">Click Me!</string>
+    <string name="name_title_text">Michael L. Wessels</string>
+</resources>

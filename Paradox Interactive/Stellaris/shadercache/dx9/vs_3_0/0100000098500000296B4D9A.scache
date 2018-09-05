@@ -1,0 +1,58 @@
+#define VERTEX_SHADER
+#define SHADERQUALITY_MEDIUM
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+float4x4 ViewProjectionMatrix : register(c0);
+float4 Right : register(c4);
+float4 Up : register(c5);
+float Scale : register(c6);
+
+struct VS_INPUT
+{
+	float2 vPosition : POSITION;
+	float2 vUV : TEXCOORD0;
+	float3 vPos : TEXCOORD1;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV : TEXCOORD0;
+	float4 vPos : TEXCOORD1;
+};
+		VS_OUTPUT main(const VS_INPUT In )
+		{
+			VS_OUTPUT Out;
+
+			float4 vPos 		= float4( In.vPos.xyz, 1.0 ); 
+			float3 vOffset 		= In.vPosition.x * ( Right.xyz + In.vPosition.y * Up.xyz ) * Scale * 1.5; //Billboard	
+			vPos.xyz 			+= float3( vOffset.x, vOffset.y, vOffset.z );
+
+			Out.vPos			= vPos;
+			Out.vPosition		= mul( ViewProjectionMatrix, vPos );
+			Out.vUV				= In.vUV;
+			return Out;
+		}
+		
+	

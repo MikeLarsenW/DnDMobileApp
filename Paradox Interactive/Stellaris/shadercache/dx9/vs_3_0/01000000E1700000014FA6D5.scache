@@ -1,0 +1,70 @@
+#define VERTEX_SHADER
+#define SHADERQUALITY_MEDIUM
+#define MASKING
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+float4x4 WorldViewProjectionMatrix : register(c0);
+float4 Color : register(c4);
+float4 BATCHED_VARIABLES_1 : register(c5);
+#define Offset BATCHED_VARIABLES_1.xy
+#define NextOffset BATCHED_VARIABLES_1.zw
+float4 BATCHED_VARIABLES_2 : register(c6);
+#define Time BATCHED_VARIABLES_2.x
+#define AnimationTime BATCHED_VARIABLES_2.y
+
+struct VS_INPUT
+{
+	float3 vPosition : POSITION;
+	float2 vTexCoord : TEXCOORD0;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vTexCoord : TEXCOORD0;
+#ifdef MASKING
+	float2 vMaskingTexCoord : TEXCOORD2;
+#endif
+};
+		VS_OUTPUT main(const VS_INPUT v )
+		{
+			VS_OUTPUT Out;
+			Out.vPosition  = mul( WorldViewProjectionMatrix, float4( v.vPosition.xyz, 1 ) );
+		
+			Out.vTexCoord = v.vTexCoord;
+			Out.vTexCoord += Offset;
+
+		#ifdef MASKING
+			//A bit hacky, but we want the masking texture coordinates to be in the range [0,1]. We turn all 0's to 0 and all nonzero to 1.
+			Out.vMaskingTexCoord = saturate(v.vTexCoord * 1000);
+		#endif
+
+#ifdef PDX_OPENGL
+			//Flip texture coordinates so map is not upside down
+			Out.vTexCoord.y = 1 - Out.vTexCoord.y;
+#endif		
+		
+			return Out;
+		}
+	

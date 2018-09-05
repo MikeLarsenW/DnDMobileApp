@@ -1,0 +1,205 @@
+Sequence.Cpp File
+
+#include <iostream>
+#include <cassert>
+#include "sequence2.h"
+
+using namespace std; // copy function for the copy constructor
+
+namespace main_savitch_4
+{
+
+	sequence::sequence(size_type initial_capacity)
+	{
+		data = new value_type[initial_capacity];//*data points to the dynamic array// size=30
+		current_index = 0;//the index of the array is [0]
+		capacity = initial_capacity;// capacity = 30 or = initial_capacity
+		used = 0;//number of items being used in the array
+
+	}
+
+	sequence::sequence(const sequence& entry)
+		//   Postcondition: The sequence has been created by copying from an existing sequence.
+	{
+		capacity = entry.capacity;
+		data = new value_type[capacity];
+		used = entry.used;
+		current_index = entry.current_index;
+		copy(entry.data, entry.data + used, data);
+	}
+
+	sequence::~sequence()//destructor
+	{
+		delete[] data;//it  releases dynamic memory afterwards.
+
+	}
+
+	void sequence::resize(size_type new_capacity)
+	{
+		assert(new_capacity > size()); // capacity is less than the number of items
+		data = new double[size()];
+		delete[] data;
+		double *tempdata;// temporary array
+		tempdata = new double[size()];
+		for (unsigned int i = 0; i<size(); i++)
+			tempdata[i] = data[i];
+		delete[] data;
+		data = new double[size() + 1];
+		for (unsigned int i = 0; i<size(); i++)
+			data[i] = tempdata[i];
+		used += 1;
+		data[capacity] = new_capacity; // array has been resized
+	}
+
+	void sequence::start()
+	{
+		current_index = 0;
+		if (size() == 0)
+		{
+			assert(is_item() == true);
+		}
+
+
+	}
+
+	void sequence::advance()
+	{
+		assert(is_item() == true);
+		{
+			if (is_item())
+			{
+				current_index++;
+			}
+		}
+
+	}
+
+	void sequence::insert(const value_type& entry)
+	{
+		assert(size()< capacity);
+
+		if (is_item() == false)
+			current_index = 0;
+
+		for (unsigned int i = used; i>current_index; i--)
+			data[i] = data[i - 1];
+		data[current_index] = entry;
+		used++;
+
+
+	}
+
+	void sequence::attach(const value_type& entry)
+	{
+		assert(size()< capacity);
+
+		if (is_item() == false)// if there is no current item
+			data[used - 1] = entry;//the entry is placed at the end of the sequence
+
+		for (unsigned int i = used; i>current_index; i--)
+		{
+			data[i] = data[i - 1];
+			data[current_index] = entry;// inserted item after the current_index
+			used++;
+		}
+
+
+
+	}
+
+	void sequence::remove_current()
+	{
+		assert(is_item() == true);
+
+		for (unsigned int i = 0; i<used; i++)
+
+			data[i] = data[i - 1];
+		used--;// need to reduce the size of the array after removal
+		data[current_index] = current_index;//the current_index is unchanged
+
+	}
+
+
+	void sequence::operator =(const sequence& source)
+	{
+		value_type *temp_data;
+		capacity = source.capacity;
+		current_index = source.current_index;
+		used = source.used;
+		temp_data = new value_type[capacity];
+		copy(data, data + used, temp_data);
+		delete[] data;
+		data = temp_data;
+		copy(source.data, source.data + used, data);
+	}
+
+	sequence::size_type sequence::size() const
+	{
+		return used;//number of items in the array
+
+	}
+
+	//returns if there is a value at the current
+	bool sequence::is_item() const
+	{
+		if (current() != 0)
+		{
+			return true;
+		}
+		else
+			return false;
+
+	}
+
+	sequence::value_type sequence::current() const
+	{
+
+
+		return current_index;// returns the value of the current index in the array
+
+
+	}
+
+}
+
+
+Sequence.h Header File
+
+#ifndef MAIN_SAVITCH_SEQUENCE_H
+#define MAIN_SAVITCH_SEQUENCE_H
+#include <cstdlib>  // Provides size_t
+
+namespace main_savitch_4
+{
+    class sequence
+    {
+    public:
+        // TYPEDEFS and MEMBER CONSTANTS
+        typedef double value_type;
+        typedef std::size_t size_type;
+        static const size_type DEFAULT_CAPACITY = 30;
+        // CONSTRUCTORS and DESTRUCTOR
+        sequence(size_type initial_capacity = DEFAULT_CAPACITY);
+        sequence(const sequence& source);
+	~sequence( );
+        // MODIFICATION MEMBER FUNCTIONS
+	void resize(size_type new_capacity);
+        void start( );
+        void advance( );
+        void insert(const value_type& entry);
+        void attach(const value_type& entry);
+        void remove_current( );
+        void operator =(const sequence& source);
+        // CONSTANT MEMBER FUNCTIONS
+        size_type size( ) const;
+        bool is_item( ) const;
+        value_type current( ) const;
+    private:
+        value_type* data;
+        size_type used;
+        size_type current_index;
+	size_type capacity;
+    };
+}
+
+#endif

@@ -1,0 +1,72 @@
+#define VERTEX_SHADER
+#define SHADERQUALITY_MEDIUM
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+float4x4 ViewProjectionMatrix : register(c0);
+float4 BATCHED_VARIABLES_1 : register(c4);
+#define vCamPos BATCHED_VARIABLES_1.xyz
+#define vBeamTextureOffset BATCHED_VARIABLES_1.w
+float4 vBeamColor : register(c5);
+float4 BATCHED_VARIABLES_2 : register(c6);
+#define vBeamStart BATCHED_VARIABLES_2.xyz
+#define vBeamWidth BATCHED_VARIABLES_2.w
+float4 BATCHED_VARIABLES_3 : register(c7);
+#define vBeamEnd BATCHED_VARIABLES_3.xyz
+#define vBeamTextureTiling BATCHED_VARIABLES_3.w
+float4 BATCHED_VARIABLES_4 : register(c8);
+#define vBeamAlpha BATCHED_VARIABLES_4.x
+#define vFadeInStart BATCHED_VARIABLES_4.y
+#define vFadeOutEnd BATCHED_VARIABLES_4.z
+#define vFadeInWidth BATCHED_VARIABLES_4.w
+float4 BATCHED_VARIABLES_5 : register(c9);
+#define vFadeOutWidth BATCHED_VARIABLES_5.x
+#define vBeamLength BATCHED_VARIABLES_5.y
+
+struct VS_INPUT
+{
+	float2 vPosition : POSITION;
+	float2 vUV : TEXCOORD0;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV : TEXCOORD0;
+};
+		VS_OUTPUT main( const VS_INPUT v )
+		{			
+			float3 Beam = vBeamEnd - vBeamStart;
+			float3 Tangent = normalize( cross( Beam, vCamPos - vBeamStart ) );
+						
+			float4 Pos;
+			Pos.xyz = vBeamStart + ( Tangent * vBeamWidth * v.vPosition.x ) + Beam * v.vPosition.y;
+			Pos.w = 1.0f;
+						
+			VS_OUTPUT Out;			
+			Out.vPosition = mul( ViewProjectionMatrix, Pos );
+			Out.vUV = v.vUV;
+			return Out;
+		}
+		
+	

@@ -1,0 +1,73 @@
+#define VERTEX_SHADER
+#define MASKING
+#define DISABLED
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+float4x4 _TextMatrix_ : register(c1);
+float4 _TextModColor_ : register(c5);
+
+struct VS_INPUT
+{
+	float3 vPosition : POSITION;
+	float2 vTexCoord : TEXCOORD0;
+};
+struct VS_DEFAULT_TEXT_INPUT
+{
+	float4 vPosition : POSITION;
+	float2 vTexCoord : TEXCOORD0;
+	float4 vColor : COLOR;
+};
+struct VS_DEFAULT_TEXT_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vTexCoord : TEXCOORD0;
+	float4 vColor : TEXCOORD1;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vTexCoord : TEXCOORD0;
+#ifdef ANIMATED
+	float4 vAnimatedTexCoord : TEXCOORD1;
+#endif
+#ifdef MASKING
+	float2 vMaskingTexCoord : TEXCOORD2;
+#endif
+};
+	VS_DEFAULT_TEXT_OUTPUT DefaultTextVertexShader( VS_DEFAULT_TEXT_INPUT v )
+	{
+		VS_DEFAULT_TEXT_OUTPUT Out;
+
+		Out.vPosition  	= mul( _TextMatrix_, v.vPosition );
+		Out.vTexCoord  	= v.vTexCoord;
+		Out.vColor		= v.vColor * _TextModColor_;
+
+		return Out;
+	}
+		VS_DEFAULT_TEXT_OUTPUT main( VS_DEFAULT_TEXT_INPUT v )
+		{
+			return DefaultTextVertexShader( v );
+		}
+	

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1520389131" />
+    <version major="3" minor="1" revision="6" build="2" />
+    <region id="Config">
+        <node id="root">
+            <attribute id="Version" value="285212673" type="4" />
+            <children>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="AnimationAllowedPixelError" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="100" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="AntiAliasing" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="2" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="BloomEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="CurrentSettings" type="22" />
+                    <attribute id="Type" value="1" type="5" />
+                    <attribute id="Value" value="Ultra" type="20" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="DOFEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="FakeFullscreenEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="FrameCapEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="FrameCapFPS" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="60" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="Fullscreen" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GammaCorrection" type="22" />
+                    <attribute id="Type" value="2" type="5" />
+                    <attribute id="Value" value="1" type="6" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="GodRaysEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="LensFlareEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="LightingDetail" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ModelDetail" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MonitorIndex" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="MotionBlurEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="PointLightShadowsEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RecommendedSettings" type="22" />
+                    <attribute id="Type" value="1" type="5" />
+                    <attribute id="Value" value="Ultra" type="20" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RefreshRateDenominator" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RefreshRateNumerator" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RenderClustered" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RenderDeferred" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="RenderMT" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="5" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="SSAOEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ScreenHeight" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ScreenWidth" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ShadowQuality" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="ShadowsEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="TextureDetail" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="0" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="TextureFiltering" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="6" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="TextureStreamingEnabled" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="TripleBuffering" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="VSync" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+                <node id="ConfigEntry">
+                    <attribute id="MapKey" value="VSyncDivider" type="22" />
+                    <attribute id="Type" value="0" type="5" />
+                    <attribute id="Value" value="1" type="4" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

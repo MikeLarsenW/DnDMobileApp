@@ -1,0 +1,5 @@
+name="A Fine Selection of Quality Mapmodes, Probably"
+archive="C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\281990\\708752579/why_mapmodes.zip"
+picture="why_mapmodes.jpg"
+remote_file_id="708752579"
+supported_version="1.2.1"

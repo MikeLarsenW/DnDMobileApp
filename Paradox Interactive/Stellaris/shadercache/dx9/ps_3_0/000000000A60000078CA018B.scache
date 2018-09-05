@@ -1,0 +1,64 @@
+#define PIXEL_SHADER
+#define SHADERQUALITY_HIGH
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+sampler Diffuse : register(s0);
+sampler EnvironmentMap : register(s4);
+sampler LightIndexMap : register(s5);
+sampler LightDataMap : register(s6);
+float4x4 ViewProjectionMatrix : register(c0);
+float4 Color : register(c4);
+
+struct VS_INPUT
+{
+	float3 vPosition : POSITION;
+	int2 vUV : TEXCOORD0;
+	float vAlpha : TEXCOORD1;
+};
+struct VS_OUTPUT
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV : TEXCOORD0;
+	float vAlpha : TEXCOORD1;
+};
+		float4 main( VS_OUTPUT In ) : PDX_COLOR
+		{
+			float vAlpha = In.vAlpha;
+			const float vAlphaBreakVal = 1.3f;	// ISB Graphics
+			const float vPadding = 0.81f;	// ISB Graphics
+			if( vAlpha > vAlphaBreakVal )
+			{
+				vAlpha = smoothstep( 1.0f - vPadding, vAlphaBreakVal, vAlpha );
+			}
+			else
+			{
+				vAlpha = smoothstep( vPadding, vAlphaBreakVal, vAlpha );
+			}
+			
+			vAlpha *= smoothstep( 0.205f, 0.0f, abs( In.vUV.x - 0.5f ));
+			vAlpha *= clamp(smoothstep(0.22f, 0.325f, vAlpha) * 100.0f, 1.0f, 50.0f); // ISB Graphics
+			return float4( 0.0f, 0.4f, 1.0f, vAlpha * 0.25 );
+		}
+	

@@ -1,0 +1,16 @@
+name="IIC - Revival - Extra Playable Races"
+archive="C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\281990\\789959744/IIC - Revival - Extra Playable Races.zip"
+tags={
+	"Species"
+	"Ships"
+	"Faction"
+	"Robot"
+	"Swarm"
+	"Ancient"
+	"Pirate"
+	"Fallen Empire"
+	"Unbidden"
+}
+picture="thumb.jpg"
+remote_file_id="789959744"
+supported_version="1.8.*"

@@ -1,0 +1,12 @@
+[2018-05-11 23:52:45]	 ,            LocalMachineEvent::AppUpdate, 2721.53 ms
+[2018-05-11 23:52:45]	 ,        Civ6App_PublishLocalMachine, 2721.90 ms
+[2018-05-11 23:52:45]	 ,    Civ6App_PublishEvents, 2721.93 ms
+[2018-05-11 23:52:45]	 ,            UIEvent::ContextLoaded, 7.73 ms
+[2018-05-11 23:52:45]	 ,----- FRAME: 0 time: 2737.31ms Moving avg: 42.77ms 1 frames since last 
+[2018-05-11 23:53:21]	 ,SerialEvent::QuerySaveGames, 33.40 ms
+[2018-05-11 23:53:21]	 ,----- FRAME: 2152 time: 54.00ms Moving avg: 23.68ms 2153 frames since last 
+[2018-05-11 23:53:31]	 ,                LuaContext::AdvancedSetup, 37.49 ms
+[2018-05-11 23:53:31]	 ,            SerialEvent::FinishedGameplayContentConfigure, 37.63 ms
+[2018-05-11 23:53:31]	 ,----- FRAME: 2750 time: 39.19ms Moving avg: 16.78ms 599 frames since last 
+[2018-05-11 23:57:17]	 ,SerialEvent::QuerySaveGames, 8.15 ms
+[2018-05-11 23:57:17]	 ,----- FRAME: 16267 time: 27.54ms Moving avg: 16.70ms 13518 frames since last 

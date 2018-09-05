@@ -1,0 +1,282 @@
+#define VERTEX_SHADER
+#define SHADERQUALITY_HIGH
+#define GUI_ICON
+#define ANIMATE_UV
+#define DISSOLVE
+#define PDX_DIRECTX_9
+
+#define mod( X, Y ) ( X % Y )
+
+#define GetMatrixData( Matrix, row, col ) ( Matrix [ row ] [ col ] )
+#define FIX_FLIPPED_UV( X ) ( X )
+
+#define sampler2DShadow sampler2D
+
+float3x3 CastTo3x3( in float4x4 M )
+{
+	return (float3x3)M;
+}
+#define Create3x3 float3x3
+
+float2 vec2(float vValue) { return float2(vValue, vValue); }
+float3 vec3(float vValue) { return float3(vValue, vValue, vValue); }
+float4 vec4(float vValue) { return float4(vValue, vValue, vValue, vValue); }
+
+#define tex2Dlod0(samp,uv) tex2Dlod(samp, float4((uv), 0.0, 0.0))
+
+#define PDX_POSITION POSITION
+
+#define PDX_COLOR COLOR
+float4x4 ViewProjectionMatrix : register(c0);
+float3 vCamPos : register(c4);
+float3 vCamRightDir : register(c5);
+float3 vCamLookAtDir : register(c6);
+float3 vCamUpDir : register(c7);
+float3 HdrRange_Time_ClipHeight : register(c8);
+float4 SystemLightPosRadius : register(c9);
+float4 SystemLightColorFalloff : register(c10);
+float3 SystemBackLightDiffuse : register(c11);
+float4 BATCHED_VARIABLES_1 : register(c12);
+#define AmbientDiffuse BATCHED_VARIABLES_1.xyz
+#define CubemapIntensity BATCHED_VARIABLES_1.w
+float3 CamLightDiffuse[3] : register(c13);
+float3 RimLightDiffuse : register(c16);
+
+float4x4 WorldMatrix : register(c28);
+float4 BATCHED_VARIABLES_2 : register(c32);
+#define vUVAnimationDir BATCHED_VARIABLES_2.xy
+#define vUVAnimationTime BATCHED_VARIABLES_2.z
+#define vBloomFactor BATCHED_VARIABLES_2.w
+float4 PrimaryColor : register(c33);
+float4 BATCHED_VARIABLES_3 : register(c34);
+#define vEmissiveRecolorCrunch BATCHED_VARIABLES_3.x
+#define vDamage BATCHED_VARIABLES_3.y
+#define CamLightIntensityNearFar BATCHED_VARIABLES_3.zw
+float3 CamLightDir[3] : register(c35);
+float4 BATCHED_VARIABLES_4 : register(c38);
+#define CamLightFadeStartStop BATCHED_VARIABLES_4.xy
+#define RimLightStartNearFar BATCHED_VARIABLES_4.zw
+float4 BATCHED_VARIABLES_5 : register(c39);
+#define RimLightStopNearFar BATCHED_VARIABLES_5.xy
+#define AmbientIntensityNearFar BATCHED_VARIABLES_5.zw
+
+float4x4 matBones[50] : register(c41);
+
+struct VS_INPUT_PDXMESHSTANDARD
+{
+	float3 vPosition : POSITION;
+	float3 vNormal : TEXCOORD0;
+	float4 vTangent : TEXCOORD1;
+	float2 vUV0 : TEXCOORD2;
+	float2 vUV1 : TEXCOORD3;
+};
+struct VS_INPUT_PDXMESHSTANDARD_SKINNED
+{
+	float3 vPosition : POSITION;
+	float3 vNormal : TEXCOORD0;
+	float4 vTangent : TEXCOORD1;
+	float2 vUV0 : TEXCOORD2;
+	float2 vUV1 : TEXCOORD3;
+	uint4 vBoneIndex : TEXCOORD4;
+	float3 vBoneWeight : TEXCOORD5;
+};
+struct VS_OUTPUT_PDXMESHSTANDARD
+{
+	float4 vPosition : PDX_POSITION;
+	float3 vNormal : TEXCOORD0;
+	float3 vTangent : TEXCOORD1;
+	float3 vBitangent : TEXCOORD2;
+	float2 vUV0 : TEXCOORD3;
+	float2 vUV1 : TEXCOORD4;
+	float4 vPos : TEXCOORD5;
+	float4 vSphere : TEXCOORD6;
+};
+struct VS_OUTPUT_PDXMESHSHADOW
+{
+	float4 vPosition : PDX_POSITION;
+	float4 vDepthUV0 : TEXCOORD0;
+};
+struct VS_INPUT_DEBUGNORMAL
+{
+	float3 vPosition : POSITION;
+	float3 vNormal : TEXCOORD0;
+	float4 vTangent : TEXCOORD1;
+	float2 vUV0 : TEXCOORD2;
+	float2 vUV1 : TEXCOORD3;
+	float vOffset : TEXCOORD6;
+};
+struct VS_INPUT_DEBUGNORMAL_SKINNED
+{
+	float3 vPosition : POSITION;
+	float3 vNormal : TEXCOORD0;
+	float4 vTangent : TEXCOORD1;
+	float2 vUV0 : TEXCOORD2;
+	float2 vUV1 : TEXCOORD3;
+	uint4 vBoneIndex : TEXCOORD4;
+	float3 vBoneWeight : TEXCOORD5;
+	float vOffset : TEXCOORD6;
+};
+struct VS_OUTPUT_DEBUGNORMAL
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV0 : TEXCOORD0;
+	float vOffset : TEXCOORD1;
+};
+struct VS_OUTPUT_PDXMESHNAVIGATIONBUTTON
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV0 : TEXCOORD0;
+	float4 vPos : TEXCOORD1;
+};
+struct VS_OUTPUT_PDXMESHSHIELD
+{
+	float4 vPosition : PDX_POSITION;
+	float2 vUV0 : TEXCOORD0;
+	float4 vPos : TEXCOORD1;
+};
+
+// --------------------------------------------------------------
+// ------------------    Light          -------------------------
+// --------------------------------------------------------------
+static const float3 SUN_DIFFUSE					= float3( 0.226f, 0.182f, 0.36f );
+
+
+// --------------------------------------------------------------
+// ------------------    HDR          	-------------------------
+// --------------------------------------------------------------
+static const float3 LUMINANCE_VECTOR  			= float3(0.2125f, 0.7154f, 0.0721f);
+
+
+// --------------------------------------------------------------
+// ------------------    Specular       -------------------------
+// --------------------------------------------------------------
+static const float SPECULAR_WIDTH 				= 15.0f;
+static const float SPECULAR_MULTIPLIER			= 1.0f;
+static const float MAP_SPECULAR_WIDTH 			= 15.0f;
+static const float MAP_SPECULAR_MULTIPLIER		= 0.05f;
+
+
+// --------------------------------------------------------------
+// ------------------       ROADS       -------------------------
+// --------------------------------------------------------------
+static const float ROAD_TILE_FREQ				= 16.0f;
+static const float ROAD_FADE_START				= 1.0f;
+static const float ROAD_FADE_END				= 4.0f;
+
+static const float ROAD_MAXIMAP_TILE_FREQ		= 30.f;
+static const float ROAD_MAXIMAP_EXTRA_WIDTH		= 0.3f;
+
+static const float ROAD_MINIMAP_TILE_FREQ		= 15.f;
+static const float ROAD_MINIMAP_EXTRA_WIDTH		= 0.0f;
+
+
+// --------------------------------------------------------------
+// ------------------       COMBAT       ------------------------
+// --------------------------------------------------------------
+static const float COMBAT_OUTSIDE_BOUNDS_BRIGHTNESS	= 0.45f;
+static const float COMBAT_INSIDE_BOUNDS_BRIGHTNESS	= 0.99f;
+static const float COMBAT_BOUNDS_SHARPNESS 			= 0.1f;
+static const float COMBAT_BOUNDS_BORDER_SHARPNESS	= 3.0f;
+
+
+// --------------------------------------------------------------
+// ------------------    WATER          -------------------------
+// --------------------------------------------------------------
+static const float 	WATER_TILE					= 1.8f;
+static const float 	WATER_TIME_SCALE			= 0.03f;
+static const float	WATER_FOG_START				= 16.5f;
+static const float	WATER_FOG_END				= 19.7f;
+
+static const float WATER_HEIGHT 				= 20.0f;
+static const float WATER_HEIGHT_RECP 			= 1.0f / WATER_HEIGHT;
+static const float WATER_HEIGHT_RECP_SQUARED 	= WATER_HEIGHT_RECP * WATER_HEIGHT_RECP;
+
+static const float HEL_WATER_SCALE				= 1.2f;
+static const float HEL_WATER_SPEED 				= 0.03f;
+static const float HEL_WATER_GLOW_NOISE_SPEED	= 0.08f;
+static const float HEL_WATER_GLOW_NOISE_SCALE   = 0.006f;
+
+
+// --------------------------------------------------------------
+// ------------------    SHADOW         -------------------------
+// --------------------------------------------------------------
+static const float  SHADOW_WEIGHT_TERRAIN    	= 1.0f;
+static const float  SHADOW_WEIGHT_WATER   		= 1.0f;
+static const float  SHADOW_WEIGHT_RIVER   		= 1.0f;
+static const float  SHADOW_WEIGHT_TREE   		= 1.0f;
+static const float  SHADOW_WEIGHT_ROAD   		= 1.0f;
+static const float  SHADOW_WEIGHT_MESH   		= 1.0f;
+
+// --------------------------------------------------------------
+// -------------    RIM LIGHT (PDXMESH)   -----------------------
+// --------------------------------------------------------------
+static const float 	RIM_START 		= 0.6f;
+static const float 	RIM_END 		= 1.0f;
+static const float4 RIM_COLOR 		= float4( 0.3f, 0.6f, 0.8f, 0.0f );
+
+float3 ToGamma(float3 aLinear)
+{
+	return pow(aLinear, vec3(0.45));
+}
+
+float3 ToLinear(float3 aGamma)
+{
+	return pow(aGamma, vec3(2.2));
+}
+
+float4 ToLinear(float4 aGamma)
+{
+	return float4(pow(aGamma.rgb, vec3(2.2)), aGamma.a);
+}
+
+static const int PDXMESH_MAX_INFLUENCE = 4;
+
+		VS_OUTPUT_PDXMESHSTANDARD main( const VS_INPUT_PDXMESHSTANDARD_SKINNED v )
+		{
+		  	VS_OUTPUT_PDXMESHSTANDARD Out;
+
+			float4 vPosition = float4( v.vPosition.xyz, 1.0 );
+			float4 vSkinnedPosition = float4( 0, 0, 0, 0 );
+			float3 vSkinnedNormal = float3( 0, 0, 0 );
+			float3 vSkinnedTangent = float3( 0, 0, 0 );
+			float3 vSkinnedBitangent = float3( 0, 0, 0 );
+
+			float4 vWeight = float4( v.vBoneWeight.xyz, 1.0f - v.vBoneWeight.x - v.vBoneWeight.y - v.vBoneWeight.z );
+
+			for( int i = 0; i < PDXMESH_MAX_INFLUENCE; ++i )
+		    {
+				int nIndex = int( v.vBoneIndex[i] );
+				float4x4 mat = matBones[nIndex];
+				vSkinnedPosition += mul( mat, vPosition ) * vWeight[i];
+
+				float3 vNormal = mul( CastTo3x3(mat), v.vNormal );
+				float3 vTangent = mul( CastTo3x3(mat), v.vTangent.xyz );
+				float3 vBitangent = cross( vNormal, vTangent ) * v.vTangent.w;
+
+				vSkinnedNormal += vNormal * vWeight[i];
+				vSkinnedTangent += vTangent * vWeight[i];
+				vSkinnedBitangent += vBitangent * vWeight[i];
+			}
+
+			Out.vSphere = float4( v.vPosition, 1.0f );
+
+			Out.vPosition = mul( WorldMatrix, vSkinnedPosition );
+			Out.vPos = Out.vPosition;
+			Out.vPos /= WorldMatrix[3][3];
+
+			Out.vPosition = mul( ViewProjectionMatrix, Out.vPosition );
+			Out.vNormal = normalize( mul( CastTo3x3(WorldMatrix), normalize( vSkinnedNormal ) ) );
+			#ifdef IS_STAR
+				Out.vTangent = normalize( v.vPosition.xyz ); //Use tangent for position
+			#else
+				Out.vTangent = normalize( mul( CastTo3x3(WorldMatrix), normalize( vSkinnedTangent ) ) );
+			#endif
+			Out.vBitangent = normalize( mul( CastTo3x3(WorldMatrix), normalize( vSkinnedBitangent ) ) );
+
+			Out.vUV0 = v.vUV0;
+			Out.vUV1 = v.vUV1;
+
+			return Out;
+		}
+
+	
